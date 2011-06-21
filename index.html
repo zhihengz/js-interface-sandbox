@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <script type="text/javascript" src="jquery.js">
+    </script>
+    <script type="text/javascript" src="Namespace.js">
+    </script>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <script type="text/javascript" src="app.js">
+    </script>
+    <div id="login">
+      <a href="#" onClick="com.ea2d.mysocial.allowAccess()">
+	Allow me to play the game
+      </a>
+    </div>
+    <div id="content">
+      hello world
+      <div>
+	<a href="#" onClick="com.ea2d.mysocial.post()">post message</a>
+      </div>
+      <div>
+	<a href="#" onClick="com.ea2d.mysocial.invite()">invite friends</a>
+      </div>
+      <div id="fb-uid"></div>
+      <div id="fb-token"></div>
+    </div>
+  </body>
+</html>
+
+
