@@ -100,6 +100,9 @@ Namespace( 'com.ea2d.social', {
 		}
 	    });
 	},
+	gifting: function( recipients, params ) {
+	    console.log( "nothing done yet" );
+	},
 	hello: function() {
 	    alert( "hello world" );
 	},

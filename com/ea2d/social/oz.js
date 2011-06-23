@@ -94,12 +94,12 @@ Namespace( 'com.ea2d.social', {
 	    var callback = function(r) { console.log(r); }
 	    google.sendNotification( data, callback);
 	},
-	gifting: function(who) {
+	gifting: function(recipients, params) {
 	    var callback = function(r) { console.log(r); }
 	    google.sendNotification( 
-		{ recipients: who,
+		{ recipients: recipients,
 		  type: 'gift',
-		  params: {'gameinfo': 123},
+		  params: params,
 		  body: 'here is gift to you',
 		  sendmail: true,		    
 		  images:['http://com-ea2d-oz.s3.amazonaws.com/dal-ozdev/icon200x240.png']

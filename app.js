@@ -56,3 +56,13 @@ function rnd( max ) {
     return rndnum;
 } 
       
+
+function testGifting( ) {
+//    var recipients = com.ea2d.mysocial.data.userId;
+    var recipients = null;
+    var params = {
+	token: mkRandomString(16),
+	giftItemId: '123'
+    };
+    com.ea2d.mysocial.gifting( recipients, params );
+}
