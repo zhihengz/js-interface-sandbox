@@ -4,16 +4,26 @@ Namespace( 'com.ea2d.social', {
 	data : { 
 	    initScope: [ 'https://www.googleapis.com/auth/emeraldsea.circles.read',
 			 'https://www.googleapis.com/auth/userinfo.profile',
-			 'https://www.googleapis.com/auth/userinfo.email']
+			 'https://www.googleapis.com/auth/userinfo.email'],
+	    userId: '',
 	},
-	load: function(){},
-	init: function(loggedIn){
+	load: function(){
+	    console.log( "oz load has nothing" );
+	},
+	init: function( appData ){
+	    // oz pass true/false
+	    var loggedIn = appData;
 	    if (loggedIn) {
-		com.ea2d.sandbox.showContent();
-		google.plusone.api('/people/me', function(user) { com.ea2d.social.oz.data.userId = user.id } );
-		
+		google.plusone.api(
+		    '/people/me', 
+		    function(user) { 
+			com.ea2d.social.oz.data.userId = user.id 
+		    });
+		console.log( "user(" + com.ea2d.social.oz.data.userId
+			     + ") is logged in" );
 	    } else {
-		com.ea2d.sandbox.showLogin();
+		com.ea2d.social.oz.data.userId = null;
+		console.log( "user is not logged in yet" );
 	    }
 	},	
 	post: function( data ){
@@ -44,11 +54,11 @@ Namespace( 'com.ea2d.social', {
 		
 	    href = href +"?cd=p&token="+randomToken + optionsParam;
 
-	    if ( com.ea2d.social.oz.data.userId == targetId ) {
+	    if ( targetId == 0 ) {
 		console.log( "post to own wall" );
 		var data = {
-		    title: feedData[2],
-		    body: feedData[0],
+		    title: feedData[1],
+		    body: feedData[3],
 		    images: [ imageUrl ],
 		    anchorText: feedData[6]
 		};
@@ -58,7 +68,7 @@ Namespace( 'com.ea2d.social', {
 		var data =  {
 		    recipients: [ targetId ],
 		    type: 'message',
-		    body: message,
+		    body: feedData[3],
 		    sendmail: true,
 		    images: [ imageUrl ],
 		}
@@ -80,7 +90,7 @@ Namespace( 'com.ea2d.social', {
 	allowAccess: function(){
 	    google.doAuth(false);
 	},
-	message: function(who){	   
+	message: function(data){	   
 	    var callback = function(r) { console.log(r); }
 	    google.sendNotification( data, callback);
 	},
